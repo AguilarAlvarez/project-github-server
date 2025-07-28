@@ -75,7 +75,7 @@ app.get('/api/user', async (req, res) => {
             })
         }
         res.json({
-            state: true,
+            state: false,
             error: "incorrect credentials"
         })
     } catch (error) {
