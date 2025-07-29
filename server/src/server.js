@@ -3,6 +3,7 @@ import cors from 'cors';
 import postgres from 'postgres';
 import "dotenv/config"
 import { ENV } from './config/env.js';
+import job from './config/cron.js';
 const app = express();
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = ENV
 
@@ -17,7 +18,13 @@ const sql = postgres({
 });
 app.use(cors());
 app.use(json());
-app.listen(5000, () => console.log('Server running on port 5000'));
+app.listen(ENV.PORT || "5001", () => console.log('Server running on port: ' + ENV.PORT));
+if (ENV.NODE_ENV === "PRO")
+    job.start()
+
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ success: true });
+});
 
 
 //TODO ENDPOINTS

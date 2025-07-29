@@ -4,4 +4,6 @@ export const ENV = {
     PGDATABASE: process.env.PGDATABASE,
     PGUSER: process.env.PGUSER,
     PGPASSWORD: process.env.PGPASSWORD,
+    PORT: process.env.PORT,
+    NODE_ENV: process.env.NODE_ENV
 }
