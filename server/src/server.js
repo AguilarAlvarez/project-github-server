@@ -73,11 +73,12 @@ app.get('/api/user', async (req, res) => {
                 state: true,
                 user_id: rows[0].id
             })
+        } else {
+            res.json({
+                state: false,
+                error: "incorrect credentials"
+            })
         }
-        res.json({
-            state: false,
-            error: "incorrect credentials"
-        })
     } catch (error) {
         res.json("error al conectar" + error)
     }
